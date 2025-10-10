@@ -10,4 +10,4 @@ wheels/
 .venv/
 .env/
 researchvenv/
-.env/
+.env
