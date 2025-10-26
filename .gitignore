@@ -12,3 +12,4 @@ wheels/
 researchvenv/
 .env
 notebook/logs
+generated_reports/
