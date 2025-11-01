@@ -44,7 +44,7 @@ class AutonomousReportGenerator:
         self.llm = llm
         self.memory = MemorySaver()
         self.tavily_search = TavilySearchResults(
-            tavily_api_key="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"
+            tavily_api_key="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"
         )
         self.logger = GLOBAL_LOGGER.bind(module="AutonomousReportGenerator")
 

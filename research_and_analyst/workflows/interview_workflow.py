@@ -3,6 +3,12 @@ from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_core.messages import get_buffer_string
 from langgraph.types import Send
+import sys
+import os
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, "../../"))
+sys.path.append(project_root)
 
 from research_and_analyst.schemas.models import InterviewState, SearchQuery
 from research_and_analyst.prompt_lib.prompt_locator import (
@@ -13,7 +19,6 @@ from research_and_analyst.prompt_lib.prompt_locator import (
 )
 from research_and_analyst.logger import GLOBAL_LOGGER
 from research_and_analyst.exception.custom_exception import ResearchAnalystException
-
 
 class InterviewGraphBuilder:
     """

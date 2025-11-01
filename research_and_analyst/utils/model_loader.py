@@ -20,7 +20,7 @@ class ApiKeyManager:
         load_dotenv()
 
         self.api_keys = {
-            "OPENAI_API_KEY": os.getenv("OPENAI_API_KEY"),
+            #"OPENAI_API_KEY": os.getenv("OPENAI_API_KEY"),
             "GOOGLE_API_KEY": os.getenv("GOOGLE_API_KEY"),
             "GROQ_API_KEY": os.getenv("GROQ_API_KEY"),
         }
@@ -113,7 +113,7 @@ class ModelLoader:
         """
         try:
             llm_block = self.config["llm"]
-            provider_key = os.getenv("LLM_PROVIDER", "openai")
+            provider_key = os.getenv("LLM_PROVIDER", "google")
 
             if provider_key not in llm_block:
                 log.error("LLM provider not found in configuration", provider=provider_key)
@@ -142,12 +142,12 @@ class ModelLoader:
                     temperature=temperature,
                 )
 
-            elif provider == "openai":
-                llm = ChatOpenAI(
-                    model=model_name,
-                    api_key=self.api_key_mgr.get("OPENAI_API_KEY"),
-                    temperature=temperature,
-                )
+            #elif provider == "openai":
+                #llm = ChatOpenAI(
+                   # model=model_name,
+                    #api_key=self.api_key_mgr.get("OPENAI_API_KEY"),
+                    #temperature=temperature,
+                #)
 
             else:
                 log.error("Unsupported LLM provider encountered", provider=provider)

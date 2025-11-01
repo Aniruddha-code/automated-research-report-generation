@@ -4,8 +4,17 @@ from fastapi.templating import Jinja2Templates
 from fastapi.middleware.cors import CORSMiddleware
 import os
 from research_and_analyst.api.routes import report_routes
+from fastapi.responses import FileResponse
 
 app = FastAPI(title="Autonomous Report Generator UI")
+
+FAVICON_PATH = os.path.join(os.path.dirname(__file__), "static", "favicon.ico")
+
+@app.get("/favicon.ico")
+async def favicon():
+    if os.path.exists(FAVICON_PATH):
+        return FileResponse(FAVICON_PATH)
+    return {"message": "Favicon not found"}
 
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="research_and_analyst/api/templates")
