@@ -1,6 +1,14 @@
 import uuid
 import os
 from fastapi.responses import FileResponse
+
+import os
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, "../../../"))
+sys.path.append(project_root)
+
 from research_and_analyst.utils.model_loader import ModelLoader
 from research_and_analyst.workflows.report_generator_workflow import AutonomousReportGenerator
 from research_and_analyst.logger import GLOBAL_LOGGER
@@ -13,8 +21,8 @@ class ReportService:
     def __init__(self):
         self.llm = ModelLoader().load_llm()
         self.reporter = AutonomousReportGenerator(self.llm)
-        self.graph = self.reporter.build_graph()
         self.reporter.memory = _shared_memory 
+        self.graph = self.reporter.build_graph()
         self.logger = GLOBAL_LOGGER.bind(module="ReportService")
 
     def start_report_generation(self, topic: str, max_analysts: int):

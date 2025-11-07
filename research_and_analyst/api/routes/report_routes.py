@@ -1,6 +1,13 @@
 from fastapi import APIRouter, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from sqlalchemy.orm import Session
+import os
+import sys
+
+current_dir = os.path.dirname(os.path.abspath(__file__))
+project_root = os.path.abspath(os.path.join(current_dir, "../../../"))
+sys.path.append(project_root)
+
 from research_and_analyst.database.db_config import SessionLocal, User, hash_password, verify_password
 from research_and_analyst.api.services.report_service import ReportService
 
